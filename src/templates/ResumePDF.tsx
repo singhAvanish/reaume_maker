@@ -359,7 +359,7 @@ const styles = StyleSheet.create({
   bullet: {
     fontSize: 10,
   marginBottom: 2,
-  width: '100%',
+  width: '125%',
   flexWrap: 'wrap',
   lineHeight: 1
   },
