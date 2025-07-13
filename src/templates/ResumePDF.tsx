@@ -336,13 +336,33 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     fontWeight:'bold'
   },
-  bullet: {
-    fontSize: 10,
-  marginBottom: 2,
-  width: '100%',
-  flexWrap: 'wrap',
-  lineHeight: 1.5
+  // bullet: {
+  //   fontSize: 10,
+  // marginBottom: 2,
+  // width: '100%',
+  // flexWrap: 'wrap',
+  // lineHeight: 1
+  // },
+  bulletContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    marginBottom: 2,
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
   },
+  
+  bulletDot: {
+    width: 10,
+    fontSize: 10,
+    lineHeight: 1.5,
+  },
+  
+  bulletText: {
+    flex: 1,
+    fontSize: 10,
+    lineHeight: 1.5,
+  },
+  
   socialLinks: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -517,7 +537,10 @@ export default function ResumePDF({ formData }: ResumeProps) {
               </View>
              
               {e.workSummary?.split('//').filter(Boolean).map((line: string, idx: number) => (
-                <Text key={idx} style={styles.bullet}>• {line.trim()}</Text>
+                <View key={idx} style={styles.bulletContainer}>
+                <Text style={styles.bulletDot}>•</Text>
+                <Text style={styles.bulletText}>{line.trim()}</Text>
+              </View>
               ))}
             </View>
           ))}
