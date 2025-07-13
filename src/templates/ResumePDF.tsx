@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 14,
+    marginBottom: 5,
   },
   leftHeader: {
     flex: 1,
@@ -316,26 +316,28 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   section: {
-    marginBottom: 14,
+    marginBottom: 8,
   },
   heading: {
     fontSize: 16,
-    marginBottom: 8,
+    marginBottom: 5,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
     borderStyle: 'solid',
     color: '#000',
   },
   title: {
-    fontSize: 24,
+    fontSize: 18,
     marginBottom: 4,
+    fontWeight:'bold'
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: 12,
     marginBottom: 2,
+    fontWeight:'bold'
   },
   bullet: {
-    marginLeft: 10,
+    fontSize:10,
     marginBottom: 2,
   },
   socialLinks: {
@@ -357,6 +359,76 @@ const styles = StyleSheet.create({
     fontSize: 10,
     textAlign: 'right',
   },
+  hr: {
+    borderBottomWidth: 2,
+    
+    borderBottomColor: 'balck',
+    borderStyle: 'solid',
+    color: '#000',
+    marginBottom:5
+  },
+  education:{
+    flexDirection: 'row',
+  justifyContent: 'space-between',
+  flexWrap: 'wrap', 
+  marginBottom: 6,
+
+  },
+  eduLeft: {
+    flexBasis: '65%',
+    flexGrow: 1,
+  },
+  eduRight: {
+    flexBasis: '30%',
+    alignItems: 'flex-end',
+  },
+  clgName:{
+    fontWeight:"bold",
+    marginRight:5
+
+  },
+  cName:{
+    fontSize:10
+
+  },
+  exp:{
+    display:"flex",
+    flexDirection:'row',
+    justifyContent:'space-between',
+    flexWrap:'wrap'
+
+  },
+  expLeft:{
+    flexBasis: '65%',
+    flexGrow: 1,
+
+  },
+  expRight:{
+    flexBasis:'30%',
+    alignItems:'flex-end'
+  },
+  tools:{
+    
+    fontWeight:'bold'
+
+  },
+  toolss:{
+    display:'flex',
+    flexDirection:'row',
+    fontSize:10,
+
+  },
+  skill:{
+    fontSize:10,
+    
+
+  },
+  skillT:{
+    fontWeight:"bold"
+  }
+  
+
+
 });
 
 export default function ResumePDF({ formData }: ResumeProps) {
@@ -393,21 +465,32 @@ export default function ResumePDF({ formData }: ResumeProps) {
             <Text style={styles.contactText}>{phoneNo}</Text>
             <View style={styles.socialLinks}>
               <Image style={styles.icon} src="https://cdn-icons-png.flaticon.com/512/174/174857.png" />
-              <Link style={styles.linkText} src={linkedInLink}>{linkedInLink}</Link>
+              <Link style={styles.linkText} src={linkedInLink}>Linkedin</Link>
             </View>
             <View style={styles.socialLinks}>
               <Image style={styles.icon} src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
-              <Link style={styles.linkText} src={gitHub}>{gitHub}</Link>
+              <Link style={styles.linkText} src={gitHub}>GitHub</Link>
             </View>
           </View>
+          
         </View>
+        <View style={styles.hr}></View>
+
 
         <View style={styles.section}>
           <Text style={styles.heading}>Education</Text>
           {collegeDetails.map((c: any, i: number) => (
-            <View key={i}>
-              <Text>{c.courseName} - {c.collegeName}</Text>
-              <Text>{c.year}, {c.location}</Text>
+            <View key={i} style={styles.education}>
+              <View style={styles.eduLeft} >
+              <Text style={styles.clgName}>{c.collegeName}</Text>
+              <Text style={styles.cName}>{c.courseName}</Text>
+              </View>
+              <View style={styles.eduRight}>
+              <Text style={styles.cName}>{c.year}</Text>
+              <Text style={styles.cName}>{c.location}</Text>
+              </View>
+             
+             
             </View>
           ))}
         </View>
@@ -416,8 +499,20 @@ export default function ResumePDF({ formData }: ResumeProps) {
           <Text style={styles.heading}>Experience</Text>
           {experience.map((e: any, i: number) => (
             <View key={i}>
-              <Text style={styles.subtitle}>{e.company} - {e.designation} ({e.year})</Text>
-              <Text>{e.location}</Text>
+              <View style={styles.exp}>
+                <View style={styles.expLeft}>
+                <Text style={styles.subtitle}>{e.company}</Text>
+                <Text style={styles.cName}>{e.designation}</Text>
+
+                </View>
+                <View style={styles.expRight}>
+                <Text style={styles.cName}>{e.year}</Text>
+                <Text style={styles.cName}>{e.location}</Text>
+                </View>
+              
+
+              </View>
+             
               {e.workSummary?.split('//').filter(Boolean).map((line: string, idx: number) => (
                 <Text key={idx} style={styles.bullet}>• {line.trim()}</Text>
               ))}
@@ -429,8 +524,14 @@ export default function ResumePDF({ formData }: ResumeProps) {
           <Text style={styles.heading}>Projects</Text>
           {projects.map((p: any, i: number) => (
             <View key={i}>
+              
               <Text style={styles.subtitle}>{p.projectName}</Text>
-              <Text>Tools: {p.tools.join(', ')}</Text>
+              <View style={styles.toolss}>
+              <Text style={styles.tools}>Tools: </Text>
+              <Text>{p.tools.join(', ')}</Text>
+
+              </View>
+              
               {p.summary?.split('//').filter(Boolean).map((line: string, idx: number) => (
                 <Text key={idx} style={styles.bullet}>• {line.trim()}</Text>
               ))}
@@ -440,11 +541,11 @@ export default function ResumePDF({ formData }: ResumeProps) {
 
         <View style={styles.section}>
           <Text style={styles.heading}>Skills</Text>
-          <Text>Languages: {skills.programmingLanguages.join(', ')}</Text>
-          <Text>Libraries/Frameworks: {skills.libraries.join(', ')}</Text>
-          <Text>Tools: {skills.tools.join(', ')}</Text>
-          <Text>Databases: {skills.database.join(', ')}</Text>
-          <Text>Cloud Services: {skills.cloudServices.join(', ')}</Text>
+          <Text style={styles.skill}><Text style={styles.skillT}>Languages: </Text>{skills.programmingLanguages.join(', ')}</Text>
+          <Text style={styles.skill}><Text style={styles.skillT}>Libraries / Frameworks: </Text>{skills.libraries.join(', ')}</Text>
+          <Text style={styles.skill}><Text style={styles.skillT}>Tools: </Text>{skills.tools.join(', ')}</Text>
+          <Text style={styles.skill}><Text style={styles.skillT}>Databases: </Text>{skills.database.join(', ')}</Text>
+          <Text style={styles.skill}><Text style={styles.skillT}>Cloud Services: </Text>{skills.cloudServices.join(', ')}</Text>
         </View>
 
         <View style={styles.section}>
