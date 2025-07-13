@@ -559,7 +559,10 @@ export default function ResumePDF({ formData }: ResumeProps) {
               </View>
               
               {p.summary?.split('//').filter(Boolean).map((line: string, idx: number) => (
-                <Text key={idx} style={styles.bullet}>• {line.trim()}</Text>
+                <View key={idx} style={styles.bulletContainer}>
+                <Text style={styles.bulletDot}>•</Text>
+                <Text style={styles.bulletText}>{line.trim()}</Text>
+              </View>
               ))}
             </View>
           ))}
