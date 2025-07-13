@@ -337,8 +337,11 @@ const styles = StyleSheet.create({
     fontWeight:'bold'
   },
   bullet: {
-    fontSize:10,
-    marginBottom: 2,
+    fontSize: 10,
+  marginBottom: 2,
+  width: '100%',
+  flexWrap: 'wrap',
+  lineHeight: 1.5
   },
   socialLinks: {
     flexDirection: 'row',
@@ -375,11 +378,11 @@ const styles = StyleSheet.create({
 
   },
   eduLeft: {
-    flexBasis: '65%',
+    flexBasis: '80%',
     flexGrow: 1,
   },
   eduRight: {
-    flexBasis: '30%',
+    flexBasis: '20%',
     alignItems: 'flex-end',
   },
   clgName:{
@@ -399,12 +402,12 @@ const styles = StyleSheet.create({
 
   },
   expLeft:{
-    flexBasis: '65%',
+    flexBasis: '80%',
     flexGrow: 1,
 
   },
   expRight:{
-    flexBasis:'30%',
+    flexBasis:'20%',
     alignItems:'flex-end'
   },
   tools:{
