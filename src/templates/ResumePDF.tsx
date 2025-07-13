@@ -336,13 +336,7 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     fontWeight:'bold'
   },
-  // bullet: {
-  //   fontSize: 10,
-  // marginBottom: 2,
-  // width: '100%',
-  // flexWrap: 'wrap',
-  // lineHeight: 1
-  // },
+ 
   bulletContainer: {
     flexDirection: 'row',
     width: '100%',
@@ -362,7 +356,13 @@ const styles = StyleSheet.create({
     fontSize: 10,
     lineHeight: 1.5,
   },
-  
+  bullet: {
+    fontSize: 10,
+  marginBottom: 2,
+  width: '100%',
+  flexWrap: 'wrap',
+  lineHeight: 1
+  },
   socialLinks: {
     flexDirection: 'row',
     alignItems: 'center',
